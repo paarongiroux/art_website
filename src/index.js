@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './index.css';
-import App from './App';
+import Sketchbook from './sketchbook';
+import Paintings from './paintings';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter >
+    <Switch>
+      <Route exact path="/" component={Sketchbook} />
+      <Route exact path="/drawings" component={Sketchbook} />
+      <Route exact path="/paintings" component={Paintings} />
+    </Switch>
+  </BrowserRouter >,
   document.getElementById('root')
 );
 
