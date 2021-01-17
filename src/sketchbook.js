@@ -28,6 +28,7 @@ import sketch23 from './res/sketch23.png';
 import sketch24 from './res/sketch24.png';
 import sketch25 from './res/sketch25.png';
 import sketch26 from './res/sketch26.png';
+import sketch27 from './res/sketch27.png';
 import name from './res/Name.png';
 import end from './res/end.png';
 
@@ -60,6 +61,7 @@ var pagesdict = [
   sketch24,
   sketch25,
   sketch26,
+  sketch27,
   end
 ];
 
