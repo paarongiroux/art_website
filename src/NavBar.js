@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import { Link } from "react-router-dom";
 import homebt from './res/home.png';
@@ -6,7 +6,7 @@ import penbt from './res/pen.png';
 import contactbt from './res/contact.png';
 import paintbt from './res/paint.png';
 
-class NavBar extends React.Component {
+class NavBar extends Component {
     render() {
         return (
             <div className = "padded">

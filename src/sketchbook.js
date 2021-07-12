@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import NavBar from './NavBar.js';
 import './App.css';
 import cover from './res/pencover.png';
@@ -35,7 +35,6 @@ import sketch30 from './res/sketch30.png';
 import name from './res/Name.png';
 import end from './res/end.png';
 
-var page = 0;
 var pagesdict = [
   cover,
   sketch1,
@@ -71,37 +70,46 @@ var pagesdict = [
   end
 ];
 
-function prevPage() {
-  if (page > 0) {
-    page --;
+class Sketchbook extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = { page: 0 };
+    this.prevPage=this.prevPage.bind(this);
+    this.nextPage=this.nextPage.bind(this);
   }
-  return document.getElementById('drawing').src=pagesdict[page];
-}
-function nextPage() {
-  var numSketches = pagesdict.length - 1
-  if (page < numSketches) {
-    page ++;
-  }
-  console.log(pagesdict[3])
-  return document.getElementById('drawing').src=pagesdict[page];
-}
 
-function Sketchbook() {
-  return (
-    <div>
-      < NavBar />
-      
-      <div className="imgContainer">
-        <img id="drawing" src={cover} alt="book cover" />
-        <div>
-          <button id="prevbtn"onClick={prevPage}/>
-          <button id="nextbtn" onClick={nextPage}/>
+  prevPage() {
+    if (this.state.page > 0) {
+      this.setState({page: this.state.page - 1})
+    }
+    return document.getElementById('drawing').src=pagesdict[this.state.page];
+  }
+  nextPage() {
+    var numSketches = pagesdict.length - 1
+    if (this.state.page < numSketches) {
+      this.setState({page: this.state.page + 1})
+    }
+    console.log(pagesdict[3])
+    return document.getElementById('drawing').src=pagesdict[this.state.page];
+  }
+  render() {
+    return (
+      <div>
+        < NavBar />
+        
+        <div className="imgContainer">
+          <img id="drawing" src={cover} alt="book cover" />
+          <div>
+            <button id="prevbtn"onClick={this.prevPage}/>
+            <button id="nextbtn" onClick={this.nextPage}/>
+          </div>
+          <img className="nameImg" src={name} alt="Aaron Giroux" />
         </div>
-        <img className="nameImg" src={name} alt="Aaron Giroux" />
+        
       </div>
-      
-    </div>
-  );
+    );
+  }
 }
 
 export default Sketchbook;

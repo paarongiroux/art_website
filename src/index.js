@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './index.css';
 import Sketchbook from './sketchbook';
 import Paintings from './paintings';
+import Discussion from './discussion';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -12,6 +13,7 @@ ReactDOM.render(
       <Route exact path="/" component={Sketchbook} />
       <Route exact path="/drawings" component={Sketchbook} />
       <Route exact path="/paintings" component={Paintings} />
+      <Route exact path="/discussion" component={Discussion} />
     </Switch>
   </BrowserRouter >,
   document.getElementById('root')
