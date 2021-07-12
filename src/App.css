@@ -94,3 +94,11 @@
   filter:contrast(150%);
 }
 
+table {
+  margin: 0 auto;
+}
+
+table, th, td {
+  border: 1px solid black;
+  background-color: white;
+}
