@@ -55,6 +55,13 @@
   min-height: 10px;
 }
 
+.about {
+  font-family:comicsansms;
+  font-weight: 900;
+  color:yellow;
+  text-shadow: -1px -1px 0 #FFA500, 1px -1px 0 #FFA500, -1px 1px 0 #FFA500, 1px 1px 0 #FFA500;
+}
+
 .scrolling-wrapper {
   overflow-x: auto;
   overflow-y: hidden;

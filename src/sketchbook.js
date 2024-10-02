@@ -15,7 +15,6 @@ var page = 0;
 function preparePages(r) {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  console.log(images);
   return images;
 }
 

@@ -16,6 +16,7 @@ class NavBar extends React.Component {
                     <li className = "navli"><Link to="/"><img className="navBt" src={homebt}/></Link></li>
                     <li className = "navli"><Link to="/drawings"><img className="navBt" src={penbt}/></Link></li>
                     <li className = "navli"><Link to="/paintings"><img className="navBt" src={paintbt}/></Link></li>
+                    <li className = "navli"><Link to="/about"><img className="navBt" src={contactbt}/></Link></li>
                     {/* <li className = "navli"><Link to="/contact"><img className="navBt" src={contactbt}/></Link></li> */}
                 </ul>
             </div>

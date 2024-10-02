@@ -24,14 +24,14 @@ function Paintings() {
       < NavBar />
       
       <div className="imgContainer">
-        <div class="scrolling-wrapper">
-            <img class="painting" src={paint1} alt="painting" />
-            <img class="painting" src={paint2} alt="painting" />
-            <img class="painting" src={paint3} alt="painting" />
-            <img class="painting" src={paint4} alt="painting" />
-            <img class="painting" src={paint5} alt="painting" />
-            <img class="painting" src={paint6} alt="painting" />
-            <img class="painting" src={paint7} alt="painting" />
+        <div className="scrolling-wrapper">
+            <img className="painting" src={paint1} alt="painting" />
+            <img className="painting" src={paint2} alt="painting" />
+            <img className="painting" src={paint3} alt="painting" />
+            <img className="painting" src={paint4} alt="painting" />
+            <img className="painting" src={paint5} alt="painting" />
+            <img className="painting" src={paint6} alt="painting" />
+            <img className="painting" src={paint7} alt="painting" />
         </div>
         
         <img className="nameImg" src={name} alt="Aaron Giroux" />
