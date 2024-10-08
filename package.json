@@ -12,7 +12,8 @@
     "react-dom": "^18.3.1",
     "react-pageflip": "^2.0.3",
     "react-router-dom": "^6.26.1",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "three": "^0.169.0"
   },
   "scripts": {
     "start": "react-scripts start",
