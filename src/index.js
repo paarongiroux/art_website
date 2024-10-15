@@ -6,6 +6,7 @@ import './index.css';
 import Sketchbook from './sketchbook';
 import Paintings from './paintings';
 import About from './about';
+import Gallery from './gallery';
 import * as serviceWorker from './serviceWorker';
 
 const container = document.getElementById('root');
@@ -18,6 +19,7 @@ root.render(
       <Route exact path="/drawings" element={<Sketchbook/>} />
       <Route exact path="/paintings" element={<Paintings/>} />
       <Route exact path="/about" element={<About/>} />
+      <Route exact path="/gallery" element={<Gallery/>} />
     </Routes>
   </BrowserRouter >
 );
