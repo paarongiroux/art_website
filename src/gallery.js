@@ -48,7 +48,6 @@ function Gallery() {
             cube2.position,
             new THREE.Vector3(4,4,4)
         );
-        console.log(cube2BB);
         scene.add(cube2);
 
         
@@ -151,7 +150,6 @@ function Gallery() {
                     break;
 
                 default: 
-                    console.log(event.code);
                     break;
 
             }
@@ -238,7 +236,6 @@ function Gallery() {
 
         var checkCollisions = function () {
             if (camBB.intersectsBox(cube2BB)) {
-                console.log("intersect");
                 return true;
             }
             return false;
