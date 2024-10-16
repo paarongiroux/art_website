@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect, useRef } from "react";
 import * as THREE from 'three';
 import Chat from './Chat';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
@@ -69,6 +70,18 @@ function Gallery() {
             new THREE.Vector3(camera.position.x + 0.25, camera.position.y + 0.25, camera.position.z + 0.25),
             new THREE.Vector3(camera.position.x - 0.25, camera.position.y - 0.75, camera.position.z - 0.25),
         );
+
+        const loader = new GLTFLoader();
+
+        loader.load( './gallery.glb', function ( gltf ) {
+            gltf.scene.position.x = -10;
+            gltf.scene.name = "gallery";
+            scene.add( gltf.scene );
+        }, undefined, function ( error ) {
+
+            console.error( error );
+
+        } );
 
         const ambLight = new THREE.AmbientLight(0xffffff, 0.7);
         scene.add(ambLight);
