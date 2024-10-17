@@ -10,7 +10,12 @@ import { PointerLockControls } from 'three/addons/controls/PointerLockControls.j
 function Gallery() {
     const refContainer = useRef(null);
     useEffect(() => {
+
+        let jumpSpeed = 0;
+        const gravity = -0.05;
+        const cameraFloor = 0.75;
         let speed = 50.0;
+        let jumping = false;
 
         let moveForward = false;
         let moveBackward = false;
@@ -64,7 +69,7 @@ function Gallery() {
           scene.add(plane1);   
 
         camera.position.z = 5;
-        camera.position.y = 0.75;
+        camera.position.y = cameraFloor;
 
         var camBB = new THREE.Box3(
             new THREE.Vector3(camera.position.x + 0.25, camera.position.y + 0.25, camera.position.z + 0.25),
@@ -162,7 +167,11 @@ function Gallery() {
                     }
                     break;
 
-                default: 
+                case 'Space':
+                    if (!jumping) {
+                        jumpSpeed = 1;
+                        jumping = true;
+                    }
                     break;
 
             }
@@ -197,6 +206,15 @@ function Gallery() {
             }
         };
 
+        const handleJump = function() {
+            camera.position.y += jumpSpeed;
+            jumpSpeed = jumpSpeed + gravity;
+            if (camera.position.y <= cameraFloor) {
+                camera.position.y = cameraFloor;
+                jumping = false;
+            }
+        }
+
         document.addEventListener('keydown', onKeyDown);
         document.addEventListener('keyup', onKeyUp);
 
@@ -216,6 +234,10 @@ function Gallery() {
                 }
                 if (moveLeft || moveRight) {
                     velocity.x -= direction.x * 400.0 * delta;
+                }
+
+                if (jumping) {
+                    handleJump();
                 }
                 
 
