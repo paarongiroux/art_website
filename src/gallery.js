@@ -227,8 +227,11 @@ function Gallery() {
         }
 
         const doCameraWobble = function() {
-            wobbleCounter = wobbleCounter % 360 + 15;
+            if(!jumping & moveForward) {
+                wobbleCounter = wobbleCounter % 360 + 15;
             camera.position.y = 0.75 +  Math.sin(wobbleCounter * Math.PI / 180) * 0.2;
+            }
+            
         }
 
         document.addEventListener('keydown', onKeyDown);
