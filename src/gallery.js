@@ -16,7 +16,9 @@ function Gallery() {
         const cameraFloor = 0.75;
         let speed = 50.0;
         let jumping = false;
+        let crouching = false;
 
+        let wobbleCounter = 0;
         let moveForward = false;
         let moveBackward = false;
         let moveLeft = false;
@@ -55,9 +57,6 @@ function Gallery() {
             new THREE.Vector3(4,4,4)
         );
         scene.add(cube2);
-
-        
-        
 
         let plane1 = new THREE.Mesh(
             new THREE.PlaneGeometry(100,100),
@@ -152,9 +151,17 @@ function Gallery() {
                     moveRight = true;
                     break;
                 
-                case 'ShiftLeft':
-                    camera.position.y = 0.5;
-                    speed = 100.0;
+                case 'KeyQ':
+                    if(!crouching) {
+                        crouching = true;
+                        camera.position.y = 0.5;
+                        speed = 100.0;
+                    } else {
+                        crouching = false;
+                        camera.position.y = 0.75
+                        speed = 50.0;
+                    }
+                    
                     break;
                 
                 case 'ControlLeft':
@@ -172,6 +179,10 @@ function Gallery() {
                         jumpSpeed = 1;
                         jumping = true;
                     }
+                    break;
+
+                case 'ShiftLeft':
+                    speed = 25;
                     break;
 
             }
@@ -215,10 +226,16 @@ function Gallery() {
             }
         }
 
+        const doCameraWobble = function() {
+            wobbleCounter = wobbleCounter % 360 + 15;
+            camera.position.y = 0.75 +  Math.sin(wobbleCounter * Math.PI / 180) * 0.2;
+        }
+
         document.addEventListener('keydown', onKeyDown);
         document.addEventListener('keyup', onKeyUp);
 
         var animate = function () {
+            
             const time = performance.now();
             if (controls.isLocked === true) {
                 const delta = (time - prevTime) / 1000;
@@ -238,6 +255,10 @@ function Gallery() {
 
                 if (jumping) {
                     handleJump();
+                }
+
+                if (speed < 50) { //sprinting
+                    doCameraWobble();
                 }
                 
 
