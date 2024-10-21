@@ -1,12 +1,16 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
 const http = require('http');
 const WebSocket = require('ws');
 const path = require('path');
 const app = express();
 
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000'
+const PORT = process.env.PORT || 3030;
+
 app.use(cors({
-  origin: "aaronislonely.com",
+  origin: FRONTEND_URL,
   credentials: true
 }));
 
@@ -25,12 +29,12 @@ wss.on('connection', function connection(ws) {
   });
 });
 
-app.use(express.static("/var/www/lonely/build"));
+app.use(express.static(path.join(__dirname, '/build')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/build/index.html'));
+  res.sendFile(path.join(__dirname, '/build/index.html')); //actually may want to set these paths in dotenv config.
 });
 
-server.listen(3030, () => {
+server.listen(PORT, () => {
   console.log('server listening on port 3030');
 });
 

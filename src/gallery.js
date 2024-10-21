@@ -70,6 +70,14 @@ function Gallery() {
         camera.position.z = 5;
         camera.position.y = cameraFloor;
 
+        window.addEventListener('resize', function() {
+            var width = window.innerWidth;
+            var height = window.innerHeight - 50;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+
         var camBB = new THREE.Box3(
             new THREE.Vector3(camera.position.x + 0.25, camera.position.y + 0.25, camera.position.z + 0.25),
             new THREE.Vector3(camera.position.x - 0.25, camera.position.y - 0.75, camera.position.z - 0.25),
@@ -158,7 +166,7 @@ function Gallery() {
                         speed = 100.0;
                     } else {
                         crouching = false;
-                        camera.position.y = 0.75
+                        camera.position.y = cameraFloor;
                         speed = 50.0;
                     }
                     
@@ -211,25 +219,26 @@ function Gallery() {
                     break;
 
                 case 'ShiftLeft':
-                    camera.position.y = 0.75
+                    camera.position.y = cameraFloor;
                     speed = 50.0;
                     break;
             }
         };
 
-        const handleJump = function() {
-            camera.position.y += jumpSpeed;
-            jumpSpeed = jumpSpeed + gravity;
+        const handleJump = function(delta) {
+            camera.position.y += jumpSpeed * delta * 50;
+            jumpSpeed = jumpSpeed + gravity * delta * 50;
             if (camera.position.y <= cameraFloor) {
                 camera.position.y = cameraFloor;
+                
                 jumping = false;
             }
         }
 
-        const doCameraWobble = function() {
+        const doCameraWobble = function(delta) {
             if(!jumping & moveForward) {
-                wobbleCounter = wobbleCounter % 360 + 15;
-            camera.position.y = 0.75 +  Math.sin(wobbleCounter * Math.PI / 180) * 0.2;
+                wobbleCounter = wobbleCounter % 360 + (850 * delta);
+            camera.position.y = cameraFloor +  Math.sin(wobbleCounter * Math.PI / 180) * 0.2;
             }
             
         }
@@ -242,6 +251,11 @@ function Gallery() {
             const time = performance.now();
             if (controls.isLocked === true) {
                 const delta = (time - prevTime) / 1000;
+                // console.log(delta); <-- delta is twice as large on second monitor vs default mac.
+                // need to work delta into jump and sprint bobbing
+                // if (velocity.z != 0) {
+                //     console.log("velocitySpeed:" ,velocity.z);
+                // }
                 velocity.x -= velocity.x * speed * delta;
                 velocity.z -= velocity.z * speed * delta;
 
@@ -251,17 +265,18 @@ function Gallery() {
 
                 if (moveForward || moveBackward) {
                     velocity.z -= direction.z * 400.0 * delta;
+                    // console.log("velocityDir:",velocity.z);
                 }
                 if (moveLeft || moveRight) {
                     velocity.x -= direction.x * 400.0 * delta;
                 }
 
                 if (jumping) {
-                    handleJump();
+                    handleJump(delta);
                 }
 
                 if (speed < 50) { //sprinting
-                    doCameraWobble();
+                    doCameraWobble(delta);
                 }
                 
 
