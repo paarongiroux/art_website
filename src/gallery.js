@@ -251,11 +251,6 @@ function Gallery() {
             const time = performance.now();
             if (controls.isLocked === true) {
                 const delta = (time - prevTime) / 1000;
-                // console.log(delta); <-- delta is twice as large on second monitor vs default mac.
-                // need to work delta into jump and sprint bobbing
-                // if (velocity.z != 0) {
-                //     console.log("velocitySpeed:" ,velocity.z);
-                // }
                 velocity.x -= velocity.x * speed * delta;
                 velocity.z -= velocity.z * speed * delta;
 
@@ -265,7 +260,6 @@ function Gallery() {
 
                 if (moveForward || moveBackward) {
                     velocity.z -= direction.z * 400.0 * delta;
-                    // console.log("velocityDir:",velocity.z);
                 }
                 if (moveLeft || moveRight) {
                     velocity.x -= direction.x * 400.0 * delta;
