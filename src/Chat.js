@@ -54,7 +54,7 @@ class Chat extends Component {
     }
 
     addMessage = message => {
-        this.setState(state => ({ messages: [message, ...state.messages] }));
+        this.setState(state => ({ messages: [...state.messages, message] }));
     };
 
     submitMessage = messageString => {
@@ -67,10 +67,9 @@ class Chat extends Component {
         return (
             <div>
                 <div className="chatBox">
-                    <div className="panel-chat">
-                        <div className="header-chat">
+                <div className="header-chat">
                             <label htmlFor="name">
-                                Name:&nbsp;
+                                NAME:&nbsp;
                                 <input
                                     type="text"
                                     id={'chatName'}
@@ -79,8 +78,9 @@ class Chat extends Component {
                                     onChange={e => this.setState({ name: e.target.value })}
                                 />
                             </label>
-                        </div>
-                        <div className="body-chat">
+                    </div>
+                    <div className="panel-chat">
+                        <div id="bodyChat">
                             {this.state.messages.map((message, index) =>
                                 <ChatMessage
                                     key={index}
@@ -89,12 +89,12 @@ class Chat extends Component {
                                 />,
                             )}
                         </div>
-                        <div className="message-chat">
+                    </div>
+                    <div className="message-chat">
                             <ChatInput
                                 ws={this.ws}
                                 onSubmitMessage={messageString => this.submitMessage(messageString)}
                             />
-                        </div>
                     </div>
                 </div>
             </div>

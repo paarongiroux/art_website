@@ -87,6 +87,7 @@ function Gallery() {
 
         loader.load( './gallery.glb', function ( gltf ) {
             gltf.scene.position.x = -10;
+            gltf.scene.position.y = -0.25;
             gltf.scene.name = "gallery";
             scene.add( gltf.scene );
         }, undefined, function ( error ) {
@@ -160,16 +161,17 @@ function Gallery() {
                     break;
                 
                 case 'KeyQ':
-                    if(!crouching) {
-                        crouching = true;
-                        camera.position.y = 0.5;
-                        speed = 100.0;
-                    } else {
-                        crouching = false;
-                        camera.position.y = cameraFloor;
-                        speed = 50.0;
+                    if (controls.isLocked) {
+                        if(!crouching) {
+                            crouching = true;
+                            camera.position.y = 0.5;
+                            speed = 100.0;
+                        } else {
+                            crouching = false;
+                            camera.position.y = cameraFloor;
+                            speed = 50.0;
+                        }
                     }
-                    
                     break;
                 
                 case 'ControlLeft':
@@ -183,7 +185,7 @@ function Gallery() {
                     break;
 
                 case 'Space':
-                    if (!jumping) {
+                    if (!jumping && controls.isLocked) {
                         jumpSpeed = 1;
                         jumping = true;
                     }
@@ -317,14 +319,17 @@ function Gallery() {
             </div>
             <div id="blocker">
                 <div id="instructions">
+                    <h1>CLICK TO BEGIN</h1>
                     <p>
-                        Click to play
-                    </p>
-                    <p>
+                        <h3>
                         Move: WASD<br/>
-                        Jump: SPACE<br/>
                         Look: MOUSE<br/>
-                        Chat: LEFT-CONTROL
+                        Jump: SPACE<br/>
+                        Sprint: SHIFT <br/>
+                        Crouch: Q <br/>
+                        
+                        Chat: CONTROL
+                        </h3>
                     </p>
                 </div>
 		    </div>

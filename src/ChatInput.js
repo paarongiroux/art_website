@@ -12,21 +12,21 @@ class ChatInput extends Component {
     render() {
         return (
             <div id="chatInputWrapper">
-                <form
-                action="."
-                onSubmit={e=> {
-                    e.preventDefault();
-                    this.props.onSubmitMessage(this.state.message);
-                    this.setState({ message: ''});
+                <form autocomplete="off"
+                    action="."
+                    onSubmit={e=> {
+                        e.preventDefault();
+                        this.props.onSubmitMessage(this.state.message);
+                        this.setState({ message: ''});
                 }}>
                 <input
-                id = "chatInput"
-                type="text"
-                placeholder={'Enter message...'}
-                value={this.state.message}
-                onChange={e => this.setState({ message: e.target.value })}
+                    id = "chatInput"
+                    type="text"
+                    placeholder={'ENTER MESSAGE...'}
+                    value={this.state.message}
+                    onChange={e => this.setState({ message: e.target.value })}
                 />
-                <input id="chatButton" type="submit" value={'Send'} />
+                <input id="chatButton" type="submit" value={'SEND'} />
                     </form>
             </div>
         )
