@@ -320,8 +320,7 @@ function Gallery() {
             <div id="blocker">
                 <div id="instructions">
                     <h1>CLICK TO BEGIN</h1>
-                    <p>
-                        <h3>
+                    <h3>
                         Move: WASD<br/>
                         Look: MOUSE<br/>
                         Jump: SPACE<br/>
@@ -329,8 +328,7 @@ function Gallery() {
                         Crouch: Q <br/>
                         
                         Chat: CONTROL
-                        </h3>
-                    </p>
+                    </h3>
                 </div>
 		    </div>
 

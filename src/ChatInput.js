@@ -12,7 +12,7 @@ class ChatInput extends Component {
     render() {
         return (
             <div id="chatInputWrapper">
-                <form autocomplete="off"
+                <form autoComplete="off"
                     action="."
                     onSubmit={e=> {
                         e.preventDefault();

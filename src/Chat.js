@@ -6,7 +6,7 @@ const URL = 'wss://aaronislonely.com'; // to-do add dynamic support for ws vs ws
 
 class Chat extends Component {
     state = {
-        name: 'user' + Math.floor(Math.random() * 9999),
+        name: localStorage['name'] || ('user' + Math.floor(Math.random() * 9999)),
         messages: [],
     };
 
@@ -58,6 +58,9 @@ class Chat extends Component {
     };
 
     submitMessage = messageString => {
+        if (!('name' in localStorage) || this.state.name != localStorage['name']) {
+            localStorage['name'] = this.state.name;
+        }
         const message = { name: this.state.name, message: messageString };
         this.ws.send(JSON.stringify(message));
         this.addMessage(message);
